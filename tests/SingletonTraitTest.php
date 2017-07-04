@@ -27,18 +27,29 @@ class SingletonTraitTest extends PHPUnit_Framework_TestCase
     {
         fwrite(STDOUT, "\n". __METHOD__);
 
-        $firstInstance = Singleton::me();
-        $secondInstance = Singleton::me();
+        $mock = $this->buildMock();
 
-        $this->assertEquals(get_class($firstInstance), get_class($secondInstance));
+        $this->assertEquals(get_class($mock::me()), get_class($mock::me()));
 
-        $str = 'should exists in next getInstance()';
-        $firstInstance->fooBar = $str;
-        $this->assertEquals($str, $secondInstance->fooBar);
+        $this->assertNotEquals(Singleton::class, get_class(SingletonCh2::me()));
+        $this->assertEquals(get_class(Singleton::me()), SingletonCh2::class);
+
+        $this->assertNotEquals(get_class(Singleton::me()), get_class(SingletonCh1::me()));
+        $this->assertEquals(SingletonCh1::class, get_class(SingletonCh1::me()));
     }
 }
 
 class Singleton
 {
     use SingletonTrait;
+}
+
+class SingletonCh1 extends Singleton
+{
+    protected static $instance = null;
+}
+
+class SingletonCh2 extends Singleton
+{
+
 }
