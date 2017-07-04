@@ -6,20 +6,20 @@ namespace elementary\core\Singleton;
 trait SingletonTrait
 {
     /**
-     * @var self
+     * @var static
      */
     protected static $instance = null;
 
     /**
-     * @return self
+     * @return static
      */
     public static function me()
     {
-        if (self::$instance === null) {
-            self::$instance = new self();
+        if (static::$instance === null) {
+            static::$instance = new static();
         }
 
-        return self::$instance;
+        return static::$instance;
     }
 
 }
