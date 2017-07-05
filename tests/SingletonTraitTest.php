@@ -4,12 +4,12 @@ namespace elementary\core\Singleton\Test;
 
 use elementary\core\Singleton\SingletonTrait;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \elementary\core\Singleton\SingletonTrait
  */
-class SingletonTraitTest extends PHPUnit_Framework_TestCase
+class SingletonTraitTest extends TestCase
 {
     /**
      * @return  MockObject|SingletonTrait
